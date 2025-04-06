@@ -340,14 +340,18 @@ export default function MusicPlayer() {
 
                 {/* Progress bar */}
                 <div className="w-full max-w-[400px] mb-6">
-                  <div className="relative">
-                    <div className="h-1 bg-white/20 rounded-full w-full">
-                      <div
-                        className="h-1 bg-white rounded-full absolute top-0 left-0"
-                        style={{ width: `${progress}%` }}
-                      ></div>
-                    </div>
-                  </div>
+                  <input
+                    type="range"
+                    min={0}
+                    max={100}
+                    value={progress}
+                    onChange={(e) => handleSeek(Number(e.target.value))}
+                    className="w-full appearance-none bg-white/20 h-1 rounded-full overflow-hidden cursor-pointer"
+                    style={{
+                      background: `linear-gradient(to right, white ${progress}%, rgba(255, 255, 255, 0.2) ${progress}%)`,
+                    }}
+                  />
+
                   <div className="flex justify-between text-gray-400 text-xs mt-1">
                     <span>
                       {Math.floor(
@@ -369,6 +373,7 @@ export default function MusicPlayer() {
                     <span>{currentSong.duration}</span>
                   </div>
                 </div>
+
 
                 {/* Playback controls */}
                 <div className="flex items-center justify-center gap-10 mb-6">
